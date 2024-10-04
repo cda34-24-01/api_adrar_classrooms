@@ -49,9 +49,16 @@ class Cours
     #[ORM\OneToMany(targetEntity: chapters::class, mappedBy: 'cours')]
     private Collection $chapter;
 
+    /**
+     * @var Collection<int, review>
+     */
+    #[ORM\OneToMany(targetEntity: review::class, mappedBy: 'cours')]
+    private Collection $review;
+
     public function __construct()
     {
         $this->chapter = new ArrayCollection();
+        $this->review = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -188,6 +195,36 @@ class Cours
             // set the owning side to null (unless already changed)
             if ($chapter->getCours() === $this) {
                 $chapter->setCours(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, review>
+     */
+    public function getReview(): Collection
+    {
+        return $this->review;
+    }
+
+    public function addReview(review $review): static
+    {
+        if (!$this->review->contains($review)) {
+            $this->review->add($review);
+            $review->setCours($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReview(review $review): static
+    {
+        if ($this->review->removeElement($review)) {
+            // set the owning side to null (unless already changed)
+            if ($review->getCours() === $this) {
+                $review->setCours(null);
             }
         }
 

@@ -18,8 +18,7 @@ class Review
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\Column]
-    private ?int $cours_id = null;
+   
 
     #[ORM\Column]
     private ?int $language_id = null;
@@ -32,6 +31,9 @@ class Review
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $created_at = null;
+
+    #[ORM\ManyToOne(inversedBy: 'review')]
+    private ?Cours $cours = null;
 
     public function getId(): ?int
     {
@@ -49,18 +51,7 @@ class Review
         return $this;
     }
 
-    public function getCoursId(): ?int
-    {
-        return $this->cours_id;
-    }
-
-    public function setCoursId(int $cours_id): static
-    {
-        $this->cours_id = $cours_id;
-
-        return $this;
-    }
-
+ 
     public function getLanguageId(): ?int
     {
         return $this->language_id;
@@ -105,6 +96,18 @@ class Review
     public function setCreatedAt(\DateTimeInterface $created_at): static
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getCours(): ?Cours
+    {
+        return $this->cours;
+    }
+
+    public function setCours(?Cours $cours): static
+    {
+        $this->cours = $cours;
 
         return $this;
     }
