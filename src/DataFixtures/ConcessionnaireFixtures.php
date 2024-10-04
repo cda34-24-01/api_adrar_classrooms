@@ -23,7 +23,7 @@ class ConcessionnaireFixtures extends Fixture
             $concessionnaire->setAdresseNumero($faker->buildingNumber);
             $concessionnaire->setAdresseRue($faker->streetName);
             $concessionnaire->setAdresseVille($faker->city);
-            $concessionnaire->setAdresseCp(str_replace(' ', '', $faker->postcode));
+
 
             $manager->persist($concessionnaire);
             $this->addReference(self::CONCESSIONNAIRE_REFERENCE_TAG . $i, $concessionnaire);
