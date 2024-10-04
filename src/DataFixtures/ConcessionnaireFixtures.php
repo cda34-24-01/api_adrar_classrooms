@@ -15,15 +15,15 @@ class ConcessionnaireFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
-        
-        for ($i = 0; $i < self::CONCESSIONNAIRE_COUNT; $i++) { 
+
+        for ($i = 0; $i < self::CONCESSIONNAIRE_COUNT; $i++) {
             $concessionnaire = new Concessionnaire();
             $concessionnaire->setNom($faker->word);
             $concessionnaire->setGroupe($faker->company);
             $concessionnaire->setAdresseNumero($faker->buildingNumber);
             $concessionnaire->setAdresseRue($faker->streetName);
             $concessionnaire->setAdresseVille($faker->city);
-            $concessionnaire->setAdresseCp(str_replace(' ' , '' , $faker->postcode));
+
 
             $manager->persist($concessionnaire);
             $this->addReference(self::CONCESSIONNAIRE_REFERENCE_TAG . $i, $concessionnaire);

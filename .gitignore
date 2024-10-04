@@ -1,11 +1,57 @@
-
-###> symfony/framework-bundle ###
-/.env.dev
-/.env.local
-/.env.local.php
-/.env.*.local
-/config/secrets/prod/prod.decrypt.private.php
-/public/bundles/
+# Symfony
 /var/
 /vendor/
-###< symfony/framework-bundle ###
+/node_modules/
+/public/bundles/
+/public/build/
+/public/uploads/
+
+# Composer
+composer.lock
+composer.phar
+
+# Doctrine
+/.env
+/.env.dev
+/.env.local
+/.env.*.local
+
+# IDE
+/.idea/
+/*.sublime-workspace
+/*.sublime-project
+/.vscode/
+/nbproject/
+/*.iml
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Log files
+/logs/*.log
+/logs/*.gz
+
+# Cache files
+/cache/*
+!cache/.gitkeep
+
+# Test files
+/tests/Tests/Results
+/tests/.env
+/tests/bootstrap.php
+
+# Backups
+*.bak
+*.tmp
+
+# Other
+*.swp
+*.swo
+*.lock
+*.sql
+*.sqlite
+*.sqlite3
+
+# Other project specific files
+/.phpunit.result.cache
