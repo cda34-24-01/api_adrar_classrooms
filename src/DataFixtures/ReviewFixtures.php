@@ -6,8 +6,9 @@ use App\Entity\Review;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class ReviewFixtures extends Fixture
+class ReviewFixtures extends Fixture implements DependentFixtureInterface
 {
     public const REVIEW_REFERENCE_TAG = 'review-';
     public const REVIEW_COUNT = 15;
@@ -15,13 +16,13 @@ class ReviewFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
-        
-        for ($i = 0; $i < self::REVIEW_COUNT; $i++) { 
+
+        for ($i = 0; $i < self::REVIEW_COUNT; $i++) {
             $review = new Review();
-            $review->setUserId($faker->numberBetween(1, 15));
+            $review->setUser($this->getReference(UserFixtures::USER_REFERENCE_TAG . $faker->numberBetween(0, UserFixtures::USER_COUNT - 1)));
             $review->setCoursId($faker->numberBetween(1, 15));
             $review->setLanguageId($faker->numberBetween(1, 15));
-            $review->setContent($faker->words(255, asText:true));
+            $review->setContent($faker->words(255, asText: true));
             $review->setRating($faker->numberBetween(1, 5));
             $review->setCreatedAt($faker->dateTime);
 
@@ -29,5 +30,12 @@ class ReviewFixtures extends Fixture
             $this->addReference(self::REVIEW_REFERENCE_TAG . $i, $review);
         }
         $manager->flush();
+    }
+    
+    public function getDependencies(): array
+    {
+        return [
+            UserFixtures::class,
+        ];
     }
 }
