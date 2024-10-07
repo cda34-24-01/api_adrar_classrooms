@@ -18,8 +18,6 @@ class Review
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-   
-
     #[ORM\ManyToOne(targetEntity: Languages::class)]
     #[ORM\JoinColumn(nullable: false)]
     private ?Languages $language = null;

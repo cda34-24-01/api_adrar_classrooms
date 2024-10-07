@@ -169,8 +169,6 @@ class Cours
         return $this;
     }
 
-
-
     /**
      * @return Collection<int, chapters>
      */
@@ -192,7 +190,6 @@ class Cours
     public function removeChapter(chapters $chapter): static
     {
         if ($this->chapter->removeElement($chapter)) {
-            // set the owning side to null (unless already changed)
             if ($chapter->getCours() === $this) {
                 $chapter->setCours(null);
             }
@@ -222,7 +219,6 @@ class Cours
     public function removeReview(review $review): static
     {
         if ($this->review->removeElement($review)) {
-            // set the owning side to null (unless already changed)
             if ($review->getCours() === $this) {
                 $review->setCours(null);
             }
