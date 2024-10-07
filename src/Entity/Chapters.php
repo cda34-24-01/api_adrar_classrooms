@@ -32,6 +32,9 @@ class Chapters
     #[ORM\ManyToOne(inversedBy: 'chapter')]
     private ?Cours $cours = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $validate = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -100,6 +103,18 @@ class Chapters
     public function setCours(?Cours $cours): static
     {
         $this->cours = $cours;
+
+        return $this;
+    }
+
+    public function isValidate(): ?bool
+    {
+        return $this->validate;
+    }
+
+    public function setValidate(?bool $validate): static
+    {
+        $this->validate = $validate;
 
         return $this;
     }
