@@ -14,6 +14,14 @@ class ReviewFixtures extends Fixture implements DependentFixtureInterface
     public const REVIEW_REFERENCE_TAG = 'review-';
     public const REVIEW_COUNT = 15;
 
+    public function getDependencies(): array
+    {
+        return [
+            UserFixtures::class,
+            CoursFixtures::class,
+            LanguagesFixtures::class
+        ];
+    }
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
@@ -22,7 +30,7 @@ class ReviewFixtures extends Fixture implements DependentFixtureInterface
             $review = new Review();
             $review->setUser($this->getReference(UserFixtures::USER_REFERENCE_TAG . $faker->numberBetween(0, UserFixtures::USER_COUNT - 1)));
             $review->setCours($this->getReference(CoursFixtures::COURS_REFERENCE_TAG . $faker->numberBetween(0, CoursFixtures::COURS_COUNT - 1)));
-            $review->setLanguageId($faker->numberBetween(1, 15));
+            $review->setLanguage($this->getReference(LanguagesFixtures::LANGUAGES_REFERENCE_TAG . rand(0, LanguagesFixtures::LANGUAGES_COUNT - 1)));
             $review->setContent($faker->words(255, asText: true));
             $review->setRating($faker->numberBetween(1, 5));
             $review->setCreatedAt($faker->dateTime);
@@ -33,10 +41,4 @@ class ReviewFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
     }
     
-    public function getDependencies(): array
-    {
-        return [
-            UserFixtures::class,
-        ];
-    }
 }
