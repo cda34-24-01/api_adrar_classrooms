@@ -4,7 +4,7 @@ namespace App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use Faker\Factory as FakerFactory;
+// use Faker\Factory as FakerFactory;
 use App\Entity\Languages;
 
 class LanguagesFixtures extends Fixture
@@ -13,12 +13,55 @@ class LanguagesFixtures extends Fixture
     public const LANGUAGES_COUNT = 10;
     public function load(ObjectManager $manager): void
     {
-        $faker = FakerFactory::create('fr_FR');
+        // $faker = FakerFactory::create('fr_FR');
 
-        for ($i = 0; $i < self::LANGUAGES_COUNT; $i++) {
+        $languageData = [
+            [
+                'title' => 'PHP',
+                'img' => 'php.png'
+            ],
+            [
+                'title' => 'Symfony',
+                'img' => 'symfony.png'
+            ],
+            [
+                'title' => 'Python',
+                'img' => 'python.png'
+            ],
+            [
+                'title' => 'Java',
+                'img' => 'java.png'
+            ],
+            [
+                'title' => 'JavaScript',
+                'img' => 'javascript.png'
+            ],
+            [
+                'title' => 'C++',
+                'img' => 'c++.png'
+            ],
+            [
+                'title' => 'C#',
+                'img' => 'c#.png'
+            ],
+            [
+                'title' => 'Ruby',
+                'img' => 'ruby.png'
+            ],
+            [
+                'title' => 'Go',
+                'img' => 'go.png'
+            ],
+            [
+                'title' => 'Swift',
+                'img' => 'swift.png'
+            ]
+        ];
+
+        foreach ($languageData as $i => $data) {
             $languages = new languages();
-            $languages->settitle($faker->word());
-            $languages->setImg($faker->word());
+            $languages->settitle($data['title']);
+            $languages->setImg($data['img']);
 
 
             $manager->persist($languages);
