@@ -29,7 +29,8 @@ implements DependentFixtureInterface
                 'estimatedTime' => new \DateInterval('PT4H'), // 4 hours
                 'createdAt' => new \DateTime('2024-01-01'),
                 'validated' => true,
-                'languageIndex' => 0
+                'languageIndex' => 0,
+                'description' => 'Découvrez les bases du PHP avec ce cours d\'introduction.'
             ],
             [
                 'title' => 'Symfony avancé',
@@ -37,7 +38,8 @@ implements DependentFixtureInterface
                 'estimatedTime' => new \DateInterval('PT8H'), // 8 hours
                 'createdAt' => new \DateTime('2024-02-15'),
                 'validated' => true,
-                'languageIndex' => 1
+                'languageIndex' => 1,
+                'description' => 'Approfondissez vos connaissances de Symfony avec ce cours avancé.'
             ],
             [
                 'title' => 'Découverte de Python',
@@ -45,7 +47,8 @@ implements DependentFixtureInterface
                 'estimatedTime' => new \DateInterval('PT6H'), // 6 hours
                 'createdAt' => new \DateTime('2024-03-30'),
                 'validated' => true,
-                'languageIndex' => 2
+                'languageIndex' => 2,
+                'description' => 'Apprenez les bases de Python avec ce cours de découverte.'
             ],
             [
                 'title' => 'Java pour les nuls',
@@ -53,7 +56,8 @@ implements DependentFixtureInterface
                 'estimatedTime' => new \DateInterval('PT5H'), // 5 hours
                 'createdAt' => new \DateTime('2024-04-10'),
                 'validated' => true,
-                'languageIndex' => 3
+                'languageIndex' => 3,
+                'description' => 'Découvrez les bases de Java avec ce cours pour débutants.'
             ],
             [
                 'title' => 'JavaScript pour les enfants',
@@ -61,7 +65,8 @@ implements DependentFixtureInterface
                 'estimatedTime' => new \DateInterval('PT3H'), // 3 hours
                 'createdAt' => new \DateTime('2024-05-20'),
                 'validated' => true,
-                'languageIndex' => 4
+                'languageIndex' => 4,
+                'description' => 'Apprenez les bases de JavaScript avec ce cours pour les enfants.'
             ],
             [
                 'title' => 'Angular pour les nuls',
@@ -69,7 +74,8 @@ implements DependentFixtureInterface
                 'estimatedTime' => new \DateInterval('PT7H'), // 7 hours
                 'createdAt' => new \DateTime('2024-06-25'),
                 'validated' => true,
-                'languageIndex' => 5
+                'languageIndex' => 5,
+                'description' => 'Découvrez les bases d\'Angular avec ce cours pour débutants.'
             ],
             [
                 'title' => 'Découverte de Ruby',
@@ -77,7 +83,8 @@ implements DependentFixtureInterface
                 'estimatedTime' => new \DateInterval('PT6H'), // 6 hours
                 'createdAt' => new \DateTime('2024-07-30'),
                 'validated' => true,
-                'languageIndex' => 6
+                'languageIndex' => 6,
+                'description' => 'Apprenez les bases de Ruby avec ce cours de découverte.'
             ],
             [
                 'title' => 'Node.js pour les nuls',
@@ -85,7 +92,8 @@ implements DependentFixtureInterface
                 'estimatedTime' => new \DateInterval('PT4H'), // 4 hours
                 'createdAt' => new \DateTime('2024-08-10'),
                 'validated' => true,
-                'languageIndex' => 7
+                'languageIndex' => 7,
+                'description' => 'Découvrez les bases de Node.js avec ce cours pour débutants.'
             ],
             [
                 'title' => 'Découverte de C#',
@@ -93,7 +101,8 @@ implements DependentFixtureInterface
                 'estimatedTime' => new \DateInterval('PT6H'), // 6 hours
                 'createdAt' => new \DateTime('2024-09-20'),
                 'validated' => true,
-                'languageIndex' => 8
+                'languageIndex' => 8,
+                'description' => 'Apprenez les bases de C# avec ce cours de découverte.'
             ],
         ];
 
@@ -107,6 +116,7 @@ implements DependentFixtureInterface
             $cours->setCreatedAt($data['createdAt']);
             $cours->setValidated($data['validated']);
             $cours->setLanguage($this->getReference(LanguagesFixtures::LANGUAGES_REFERENCE_TAG . rand(0, LanguagesFixtures::LANGUAGES_COUNT - 1)));
+            $cours->setDescription($data['description']);
 
             $manager->persist($cours);
             $this->addReference(self::COURS_REFERENCE_TAG . $i, $cours);
