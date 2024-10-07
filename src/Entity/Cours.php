@@ -57,6 +57,9 @@ class Cours
     #[ORM\OneToMany(targetEntity: Review::class, mappedBy: 'cours')]
     private Collection $review;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $description = null;
+
     public function __construct()
     {
         $this->chapter = new ArrayCollection();
@@ -171,6 +174,7 @@ class Cours
         return $this;
     }
 
+
     /**
      * @return Collection<int, Chapters>
      */
@@ -225,6 +229,18 @@ class Cours
                 $review->setCours(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): static
+    {
+        $this->description = $description;
 
         return $this;
     }
