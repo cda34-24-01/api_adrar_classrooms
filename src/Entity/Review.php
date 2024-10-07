@@ -31,7 +31,8 @@ class Review
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $created_at = null;
 
-    #[ORM\ManyToOne(inversedBy: 'review')]
+    #[ORM\ManyToOne(targetEntity: Cours::class, inversedBy: 'reviews')]
+    #[ORM\JoinColumn(nullable: false)]
     private ?Cours $cours = null;
 
     public function getId(): ?int

@@ -1,20 +1,14 @@
-{% extends 'base.html.twig' %}
+<h1>Liste des reviews</h1>
 
-{% block title %}Hello ReviewController!{% endblock %}
-
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/dev/Desktop/symfony/adrar/api_adrar_classrooms/src/Controller/ReviewController.php</code></li>
-        <li>Your template at <code>C:/Users/dev/Desktop/symfony/adrar/api_adrar_classrooms/templates/review/index.html.twig</code></li>
-    </ul>
-</div>
-{% endblock %}
+<ul>
+    {% for review in reviews %}
+        <li>
+            <strong>Utilisateur : {{ review.user.username }}</strong> - 
+            {# <strong>Cours : {{ review.cours.title }}</strong> -  #}
+            Commentaire : {{ review.content }} - 
+            Note : {{ review.rating }}
+        </li>
+    {% else %}
+        <li>Aucun commentaire trouvé.</li>
+    {% endfor %}
+</ul>

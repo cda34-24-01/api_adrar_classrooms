@@ -44,15 +44,15 @@ class Cours
 
 
     /**
-     * @var Collection<int, chapters>
+     * @var Collection<int, Chapters>
      */
-    #[ORM\OneToMany(targetEntity: chapters::class, mappedBy: 'cours')]
+    #[ORM\OneToMany(targetEntity: Chapters::class, mappedBy: 'cours')]
     private Collection $chapter;
 
     /**
-     * @var Collection<int, review>
+     * @var Collection<int, Review>
      */
-    #[ORM\OneToMany(targetEntity: review::class, mappedBy: 'cours')]
+    #[ORM\OneToMany(targetEntity: Review::class, mappedBy: 'cours')]
     private Collection $review;
 
     public function __construct()
@@ -199,14 +199,14 @@ class Cours
     }
 
     /**
-     * @return Collection<int, review>
+     * @return Collection<int, Review>
      */
     public function getReview(): Collection
     {
         return $this->review;
     }
 
-    public function addReview(review $review): static
+    public function addReview(Review $review): static
     {
         if (!$this->review->contains($review)) {
             $this->review->add($review);
@@ -216,7 +216,7 @@ class Cours
         return $this;
     }
 
-    public function removeReview(review $review): static
+    public function removeReview(Review $review): static
     {
         if ($this->review->removeElement($review)) {
             if ($review->getCours() === $this) {
