@@ -5,14 +5,12 @@ namespace App\DataFixtures;
 use App\Entity\Review;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use Faker\Factory;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 class ReviewFixtures extends Fixture implements DependentFixtureInterface
 {
     
     public const REVIEW_REFERENCE_TAG = 'review-';
-    public const REVIEW_COUNT = 8;
 
     public function getDependencies(): array
     {
@@ -24,7 +22,6 @@ class ReviewFixtures extends Fixture implements DependentFixtureInterface
     }
     public function load(ObjectManager $manager): void
     {
-        // $faker = Factory::create('fr_FR');
         $reviewData = [
             [
                 'user_id' => 1,
