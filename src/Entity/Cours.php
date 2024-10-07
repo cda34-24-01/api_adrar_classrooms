@@ -46,13 +46,13 @@ class Cours
 
 
     /**
-     * @var Collection<int, chapters>
+     * @var Collection<int, Chapters>
      */
     #[ORM\OneToMany(targetEntity: Chapters::class, mappedBy: 'cours')]
     private Collection $chapter;
 
     /**
-     * @var Collection<int, review>
+     * @var Collection<int, Review>
      */
     #[ORM\OneToMany(targetEntity: Review::class, mappedBy: 'cours')]
     private Collection $review;
@@ -218,7 +218,7 @@ class Cours
         return $this;
     }
 
-    public function removeReview(review $review): static
+    public function removeReview(Review $review): static
     {
         if ($this->review->removeElement($review)) {
             if ($review->getCours() === $this) {

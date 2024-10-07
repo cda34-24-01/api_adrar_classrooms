@@ -16,6 +16,16 @@ class ReviewRepository extends ServiceEntityRepository
         parent::__construct($registry, Review::class);
     }
 
+    public function findAllWithUsers(): array
+    {
+        return $this->createQueryBuilder('r')
+            ->leftJoin('r.user', 'u')
+            // ->leftJoin('r.cours', 'c')
+            ->addSelect('u')
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Review[] Returns an array of Review objects
     //     */
