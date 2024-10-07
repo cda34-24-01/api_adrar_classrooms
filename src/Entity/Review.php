@@ -20,8 +20,9 @@ class Review
 
    
 
-    #[ORM\Column]
-    private ?int $language_id = null;
+    #[ORM\ManyToOne(targetEntity: Languages::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Languages $language = null;
 
     #[ORM\Column(length: 255)]
     private ?string $content = null;
@@ -51,16 +52,14 @@ class Review
         return $this;
     }
 
- 
-    public function getLanguageId(): ?int
+    public function getLanguage(): ?Languages
     {
-        return $this->language_id;
+        return $this->language;
     }
 
-    public function setLanguageId(int $language_id): static
+    public function setLanguage(?Languages $language): static
     {
-        $this->language_id = $language_id;
-
+        $this->language = $language;
         return $this;
     }
 
