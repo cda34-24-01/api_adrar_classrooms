@@ -5,7 +5,6 @@ namespace App\DataFixtures;
 use App\Entity\Cours;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-// use Faker\Factory as FakerFactory;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 class CoursFixtures extends Fixture
@@ -13,7 +12,6 @@ implements DependentFixtureInterface
 
 {
     public const COURS_REFERENCE_TAG = 'cours-';
-    public const COURS_COUNT = 9;
     public function getDependencies(): array
     {
         return [
@@ -69,31 +67,13 @@ implements DependentFixtureInterface
                 'description' => 'Apprenez les bases de JavaScript avec ce cours pour les enfants.'
             ],
             [
-                'title' => 'Angular pour les nuls',
-                'level' => 'Intermédiaire',
+                'title' => 'C++ pour les nuls',
+                'level' => 'Débutant',
                 'estimatedTime' => new \DateInterval('PT7H'), // 7 hours
                 'createdAt' => new \DateTime('2024-06-25'),
                 'validated' => true,
                 'languageIndex' => 5,
-                'description' => 'Découvrez les bases d\'Angular avec ce cours pour débutants.'
-            ],
-            [
-                'title' => 'Découverte de Ruby',
-                'level' => 'Intermédiaire',
-                'estimatedTime' => new \DateInterval('PT6H'), // 6 hours
-                'createdAt' => new \DateTime('2024-07-30'),
-                'validated' => true,
-                'languageIndex' => 6,
-                'description' => 'Apprenez les bases de Ruby avec ce cours de découverte.'
-            ],
-            [
-                'title' => 'Node.js pour les nuls',
-                'level' => 'Débutant',
-                'estimatedTime' => new \DateInterval('PT4H'), // 4 hours
-                'createdAt' => new \DateTime('2024-08-10'),
-                'validated' => true,
-                'languageIndex' => 7,
-                'description' => 'Découvrez les bases de Node.js avec ce cours pour débutants.'
+                'description' => 'Découvrez les bases de C++ avec ce cours pour les débutants.'
             ],
             [
                 'title' => 'Découverte de C#',
@@ -101,12 +81,37 @@ implements DependentFixtureInterface
                 'estimatedTime' => new \DateInterval('PT6H'), // 6 hours
                 'createdAt' => new \DateTime('2024-09-20'),
                 'validated' => true,
-                'languageIndex' => 8,
+                'languageIndex' => 6,
                 'description' => 'Apprenez les bases de C# avec ce cours de découverte.'
             ],
+            [
+                'title' => 'Découverte de Ruby',
+                'level' => 'Intermédiaire',
+                'estimatedTime' => new \DateInterval('PT6H'), // 6 hours
+                'createdAt' => new \DateTime('2024-07-30'),
+                'validated' => true,
+                'languageIndex' => 7,
+                'description' => 'Apprenez les bases de Ruby avec ce cours de découverte.'
+            ],
+            [
+                'title' => 'Go pour les nuls',
+                'level' => 'Débutant',
+                'estimatedTime' => new \DateInterval('PT4H'), // 4 hours
+                'createdAt' => new \DateTime('2024-08-10'),
+                'validated' => true,
+                'languageIndex' => 8,
+                'description' => 'Découvrez les bases de Go avec ce cours pour débutants.'
+            ],
+            [
+                'title' => 'Swift pour les enfants',
+                'level' => 'Débutant',
+                'estimatedTime' => new \DateInterval('PT3H'), // 3 hours
+                'createdAt' => new \DateTime('2024-10-15'),
+                'validated' => true,
+                'languageIndex' => 9,
+                'description' => 'Apprenez les bases de Swift avec ce cours pour les enfants.'
+            ]
         ];
-
-        // $faker = FakerFactory::create('fr_FR');
 
         foreach ($coursesData as $i => $data) {
             $cours = new Cours();
@@ -115,7 +120,7 @@ implements DependentFixtureInterface
             $cours->setEstimatedTime((new \DateTime())->add($data['estimatedTime']));
             $cours->setCreatedAt($data['createdAt']);
             $cours->setValidated($data['validated']);
-            $cours->setLanguage($this->getReference(LanguagesFixtures::LANGUAGES_REFERENCE_TAG . rand(0, LanguagesFixtures::LANGUAGES_COUNT - 1)));
+            $cours->setLanguage($this->getReference(LanguagesFixtures::LANGUAGES_REFERENCE_TAG . $data['languageIndex']));
             $cours->setDescription($data['description']);
 
             $manager->persist($cours);

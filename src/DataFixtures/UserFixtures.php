@@ -5,16 +5,13 @@ namespace App\DataFixtures;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-// use Faker\Factory;
 
 class UserFixtures extends Fixture
 {
     public const USER_REFERENCE_TAG = 'user-';
-    public const USER_COUNT = 9;
 
     public function load(ObjectManager $manager): void
     {
-        // $faker = Factory::create('fr_FR');
 
         $usersData = [
             [
