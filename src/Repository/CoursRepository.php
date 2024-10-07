@@ -16,28 +16,28 @@ class CoursRepository extends ServiceEntityRepository
         parent::__construct($registry, Cours::class);
     }
 
-//    /**
-//     * @return Cours[] Returns an array of Cours objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    function getAllCours()
+    {
+        return $this->createQueryBuilder('c')
+            ->select('c.id', 'c.title', 'c.level', 'c.estimated_time', 'c.created_at', 'c.updated_at', 'c.files', 'c.validated', 'c.language_id')
+            ->getQuery()
+            ->getResult();
+    }
+    function getCours()
+    {
+        return $this->createQueryBuilder('c')
+            ->select('c.id', 'c.title', 'c.level', 'c.estimated_time', 'c.created_at', 'c.updated_at', 'c.files', 'c.validated', 'c.language_id')
+            ->where('c.title = $sTitle')
+            ->getQuery()
+            ->getResult();
+    }
 
-//    public function findOneBySomeField($value): ?Cours
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    function getCoursById(int $languagesId)
+    {
+        return $this->createQueryBuilder('c')
+            ->select('c.id', 'c.title', 'c.level', 'c.estimated_time', 'c.created_at', 'c.updated_at', 'c.files', 'c.validated', 'c.language_id')
+            ->where('c.language_id = $languagesId')
+            ->getQuery()
+            ->getResult();
+    }
 }

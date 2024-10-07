@@ -7,7 +7,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiResource;
 
+#[ApiResource]
 #[ORM\Entity(repositoryClass: CoursRepository::class)]
 class Cours
 {
@@ -46,13 +48,13 @@ class Cours
     /**
      * @var Collection<int, chapters>
      */
-    #[ORM\OneToMany(targetEntity: chapters::class, mappedBy: 'cours')]
+    #[ORM\OneToMany(targetEntity: Chapters::class, mappedBy: 'cours')]
     private Collection $chapter;
 
     /**
      * @var Collection<int, review>
      */
-    #[ORM\OneToMany(targetEntity: review::class, mappedBy: 'cours')]
+    #[ORM\OneToMany(targetEntity: Review::class, mappedBy: 'cours')]
     private Collection $review;
 
     public function __construct()
@@ -170,7 +172,7 @@ class Cours
     }
 
     /**
-     * @return Collection<int, chapters>
+     * @return Collection<int, Chapters>
      */
     public function getChapter(): Collection
     {
@@ -199,14 +201,14 @@ class Cours
     }
 
     /**
-     * @return Collection<int, review>
+     * @return Collection<int, Review>
      */
     public function getReview(): Collection
     {
         return $this->review;
     }
 
-    public function addReview(review $review): static
+    public function addReview(Review $review): static
     {
         if (!$this->review->contains($review)) {
             $this->review->add($review);

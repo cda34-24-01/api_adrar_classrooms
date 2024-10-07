@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Languages;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\AST\WhereClause;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -16,28 +17,20 @@ class LanguagesRepository extends ServiceEntityRepository
         parent::__construct($registry, Languages::class);
     }
 
-//    /**
-//     * @return Languages[] Returns an array of Languages objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('l')
-//            ->andWhere('l.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('l.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    function getLanguages(string $sTitle)
+    {
+        return $this->createQueryBuilder('l')
+            ->select('l.id', 'l.title', 'l.img')
+            ->where('l.title = $sTitle')
+            ->getQuery()
+            ->getResult();
+    }
 
-//    public function findOneBySomeField($value): ?Languages
-//    {
-//        return $this->createQueryBuilder('l')
-//            ->andWhere('l.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    function getAllLanguages()
+    {
+        return $this->createQueryBuilder('l')
+            ->select('l.id', 'l.title', 'l.img')
+            ->getQuery()
+            ->getResult();
+    }
 }
