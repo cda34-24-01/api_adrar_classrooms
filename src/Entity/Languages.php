@@ -77,7 +77,6 @@ class Languages
     public function removeCour(Cours $cour): static
     {
         if ($this->cours->removeElement($cour)) {
-            // set the owning side to null (unless already changed)
             if ($cour->getLanguage() === $this) {
                 $cour->setLanguage(null);
             }
