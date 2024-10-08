@@ -16,28 +16,13 @@ class ChaptersRepository extends ServiceEntityRepository
         parent::__construct($registry, Chapters::class);
     }
 
-//    /**
-//     * @return Chapters[] Returns an array of Chapters objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
 
-//    public function findOneBySomeField($value): ?Chapters
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    function getChaptersCoursId(int $CoursesId): array
+    {
+        return $this->createQueryBuilder('c')
+            ->select('c.id', 'c.title', 'c.level', 'c.estimated_time', 'c.created_at', 'c.updated_at', 'c.files', 'c.validated', 'c.language_id')
+            ->where('c.language_id = $CoursesId')
+            ->getQuery()
+            ->getResult();
+    }
 }
