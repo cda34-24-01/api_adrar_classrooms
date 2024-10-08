@@ -18,14 +18,14 @@ implements DependentFixtureInterface
 
 
     {
-
+        $dataLength = CoursFixtures::getcoursesData();
 
         $faker = FakerFactory::create('fr_FR');
         for ($i = 0; $i < 10; $i++) {
             $chapter = new Chapters();
             $chapter->setTitle($faker->word());
             $chapter->setContent($faker->word());
-            $chapter->setCours($this->getReference(CoursFixtures::COURS_REFERENCE_TAG . rand(0, CoursFixtures::COURS_COUNT - 1)));
+            $chapter->setCours($this->getReference(CoursFixtures::COURS_REFERENCE_TAG . rand(0, count($dataLength) - 1)));
             $manager->persist($chapter);
         }
 
