@@ -6,21 +6,17 @@ use App\Entity\Cours;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Faker\Factory as FakerFactory;
+
 
 class CoursFixtures extends Fixture
 implements DependentFixtureInterface
 
 {
     public const COURS_REFERENCE_TAG = 'cours-';
-    public function getDependencies(): array
+    public static function getcoursesData(): array
     {
         return [
-            LanguagesFixtures::class
-        ];
-    }
-    public function load(ObjectManager $manager): void
-    {
-         $coursesData = [
             [
                 'title' => 'Introduction au PHP',
                 'level' => 'Débutant',
@@ -112,6 +108,18 @@ implements DependentFixtureInterface
                 'description' => 'Apprenez les bases de Swift avec ce cours pour les enfants.'
             ]
         ];
+    }
+    public function getDependencies(): array
+    {
+        return [
+            LanguagesFixtures::class
+        ];
+    }
+    public function load(ObjectManager $manager): void
+
+    {
+        $faker = FakerFactory::create();
+        $coursesData = self::getCoursesData();
 
         foreach ($coursesData as $i => $data) {
             $cours = new Cours();
@@ -120,6 +128,7 @@ implements DependentFixtureInterface
             $cours->setEstimatedTime((new \DateTime())->add($data['estimatedTime']));
             $cours->setCreatedAt($data['createdAt']);
             $cours->setValidated($data['validated']);
+            $cours->setImgUrl($faker->image('public/uploads', 640, 480, null, false));
             $cours->setLanguage($this->getReference(LanguagesFixtures::LANGUAGES_REFERENCE_TAG . $data['languageIndex']));
             $cours->setDescription($data['description']);
 

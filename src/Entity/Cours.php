@@ -60,6 +60,9 @@ class Cours
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imgUrl = null;
+
     public function __construct()
     {
         $this->chapter = new ArrayCollection();
@@ -241,6 +244,18 @@ class Cours
     public function setDescription(?string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getImgUrl(): ?string
+    {
+        return $this->imgUrl;
+    }
+
+    public function setImgUrl(?string $imgUrl): static
+    {
+        $this->imgUrl = $imgUrl;
 
         return $this;
     }
