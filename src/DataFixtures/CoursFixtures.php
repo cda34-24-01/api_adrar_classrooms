@@ -128,7 +128,7 @@ implements DependentFixtureInterface
             $cours->setEstimatedTime((new \DateTime())->add($data['estimatedTime']));
             $cours->setCreatedAt($data['createdAt']);
             $cours->setValidated($data['validated']);
-            $cours->setImgUrl($faker->image('public/uploads', 640, 480, null, false));
+            $cours->setImgUrl($faker->imageUrl(640, 480, ''));
             $cours->setLanguage($this->getReference(LanguagesFixtures::LANGUAGES_REFERENCE_TAG . $data['languageIndex']));
             $cours->setDescription($data['description']);
 
