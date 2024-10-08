@@ -6,7 +6,7 @@ use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ChaptersRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-
+use phpDocumentor\Reflection\Types\Boolean;
 
 #[ApiResource]
 #[ORM\Entity(repositoryClass: ChaptersRepository::class)]
@@ -26,7 +26,7 @@ class Chapters
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column(nullable: false)]
+    #[ORM\Column(type: Types::BOOLEAN, nullable: false)]
     private ?bool $validated = false;
 
     #[ORM\ManyToOne(inversedBy: 'chapter')]
