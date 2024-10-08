@@ -21,7 +21,7 @@ class ChaptersRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('c')
             ->select('c.id', 'c.title', 'c.level', 'c.estimated_time', 'c.created_at', 'c.updated_at', 'c.files', 'c.validated', 'c.language_id')
-            ->where('c.language_id = $CoursesId')
+            ->where('c.id = $CoursesId')
             ->getQuery()
             ->getResult();
     }
