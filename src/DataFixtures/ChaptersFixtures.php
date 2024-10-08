@@ -7,7 +7,7 @@ use Doctrine\Persistence\ObjectManager;
 use Faker\Factory as FakerFactory;
 use App\Entity\Chapters;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
-
+use Doctrine\DBAL\Types\StringType;
 
 class ChaptersFixtures extends Fixture
 implements DependentFixtureInterface

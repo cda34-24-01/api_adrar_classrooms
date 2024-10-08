@@ -26,14 +26,13 @@ class Chapters
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?bool $validated = null;
+    #[ORM\Column(nullable: false)]
+    private ?bool $validated = false;
 
     #[ORM\ManyToOne(inversedBy: 'chapter')]
     private ?Cours $cours = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?bool $validate = null;
+
 
     public function getId(): ?int
     {
@@ -103,18 +102,6 @@ class Chapters
     public function setCours(?Cours $cours): static
     {
         $this->cours = $cours;
-
-        return $this;
-    }
-
-    public function isValidate(): ?bool
-    {
-        return $this->validate;
-    }
-
-    public function setValidate(?bool $validate): static
-    {
-        $this->validate = $validate;
 
         return $this;
     }
