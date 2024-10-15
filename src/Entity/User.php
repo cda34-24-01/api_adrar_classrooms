@@ -45,6 +45,9 @@ class User
     #[ORM\Column(length: 255)]
     private ?string $emploi = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $profile_picture_link = null;
+
     public function __construct()
     {
         $this->reviews = new ArrayCollection();
@@ -176,6 +179,18 @@ class User
     public function setEmploi(string $emploi): static
     {
         $this->emploi = $emploi;
+
+        return $this;
+    }
+
+    public function getProfilePictureLink(): ?string
+    {
+        return $this->profile_picture_link;
+    }
+
+    public function setProfilePictureLink(string $profile_picture_link): static
+    {
+        $this->profile_picture_link = $profile_picture_link;
 
         return $this;
     }
