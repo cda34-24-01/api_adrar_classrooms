@@ -21,6 +21,9 @@ class UserFixtures extends Fixture
                 'email' => 'john.doe@example.com',
                 'password' => 'password123',
                 'createdAt' => new \DateTime('2023-01-01'),
+                'quote' => 'Etiam elementum turpis ac metus commodo, fermentum blandit tortor placerat. Vestibulum rutrum, turpis eget viverra rhoncus, dui enim pharetra augue, nec sagittis velit est quis arcu.',
+                'emploi' => 'Développeur Full-Stack Senior',
+                'profilePictureLink' => "imgs/profile_pictures/portrait-connexion.png",
             ],
             [
                 'username' => 'asmith',
@@ -29,6 +32,9 @@ class UserFixtures extends Fixture
                 'email' => 'alice.smith@example.com',
                 'password' => 'securepassword',
                 'createdAt' => new \DateTime('2023-02-10'),
+                'quote' => 'Suspendisse a nisi eleifend, iaculis magna quis, posuere ante. Maecenas commodo tellus tellus, vitae pellentesque diam sagittis vel.',
+                'emploi' => 'Développeur Back-End Senior',
+                'profilePictureLink' => "imgs/profile_pictures/portrait-connexion4.png",
             ],
             [
                 'username' => 'bwilliams',
@@ -37,6 +43,9 @@ class UserFixtures extends Fixture
                 'email' => 'bob.williams@exemple.com',
                 'password' => 'password123',
                 'createdAt' => new \DateTime('2023-03-15'),
+                'quote' => 'Integer tempus libero posuere enim viverra placerat. Nulla facilisi. Donec blandit ultricies rutrum. In auctor mauris nibh, et lobortis turpis facilisis sit amet. In eu diam a tellus congue varius vitae in neque.',
+                'emploi' => 'Développeur Full-Stack Junior',
+                'profilePictureLink' => "imgs/profile_pictures/portrait-connexion3.png",
             ],
             [
                 'username' => 'jdoe',
@@ -45,6 +54,9 @@ class UserFixtures extends Fixture
                 'email' => 'jane.doe@exemple.com',
                 'password' => 'password123',
                 'createdAt' => new \DateTime('2023-04-20'),
+                'quote' => 'Curabitur sagittis libero vitae nibh consequat pellentesque. Ut imperdiet maximus risus convallis volutpat. Sed luctus, enim at pharetra aliquet, metus velit posuere leo, tincidunt elementum lorem velit a est.',
+                'emploi' => 'Développeur Front Junior',
+                'profilePictureLink' => "imgs/profile_pictures/portrait-connexion6.png",
             ],
             [
                 'username' => 'jclaude',
@@ -53,6 +65,9 @@ class UserFixtures extends Fixture
                 'email' => 'jean.claude@exemple.com',
                 'password' => 'password123',
                 'createdAt' => new \DateTime('2023-04-20'),
+                'quote' => 'Sed nisl mauris, congue a scelerisque in, suscipit quis diam. Mauris nec ultrices est. Sed tristique a nisl nec congue. Vestibulum finibus velit vitae massa volutpat mattis.',
+                'emploi' => 'Acteur de cinéma belge',
+                'profilePictureLink' => "imgs/profile_pictures/portrait-connexion5.png",
             ],
             [
                 'username' => 'jjackson',
@@ -61,6 +76,9 @@ class UserFixtures extends Fixture
                 'email' => 'janette.jackson@exemple.com',
                 'password' => 'password123',
                 'createdAt' => new \DateTime('2023-04-20'),
+                'quote' => "Peek in the shadow, I come into the light, If you tell me I'm wrong, Then you better prove you're right, And you're sellin' out souls, But I, I care about mine, I've got to get stronger, And I won't give up the fight.",
+                'emploi' => 'Chanteuse et danseuse américaine',
+                'profilePictureLink' => "imgs/profile_pictures/portrait-connexion9.png",
             ],
             [
                 'username' => 'pjones',
@@ -69,6 +87,9 @@ class UserFixtures extends Fixture
                 'email' => 'paul.jones@example.com',
                 'password' => 'password123',
                 'createdAt' => new \DateTime('2023-05-10'),
+                'quote' => 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.',
+                'emploi' => 'Développeur Full-Stack Junior',
+                'profilePictureLink' => "imgs/profile_pictures/portrait-connexion2.png",
             ],
             [
                 'username' => 'hpotter',
@@ -77,6 +98,9 @@ class UserFixtures extends Fixture
                 'email' => 'harry.potter@example.com',
                 'password' => 'password123',
                 'createdAt' => new \DateTime('2023-06-15'),
+                'quote' => '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+                'emploi' => 'Sorcier Full-Stack Junior',
+                'profilePictureLink' => "imgs/profile_pictures/portrait-connexion7.png",
             ],
             [
                 'username' => 'rweasley',
@@ -85,6 +109,9 @@ class UserFixtures extends Fixture
                 'email' => 'ron.weasley@example.com',
                 'password' => 'password123',
                 'createdAt' => new \DateTime('2023-07-20'),
+                'quote' => "J'étais musicien indépendant, mais la COVID a tout stoppé. On m'a parlé d'ADRAR Classrooms, ça m'a ouvert des opportunités professionnelles insoupçonnées.",
+                'emploi' => 'Sorcier Back-End Junior',
+                'profilePictureLink' => "imgs/profile_pictures/portrait-connexion8.png",
             ],
         ];
 
@@ -97,7 +124,9 @@ class UserFixtures extends Fixture
             $user->setEmail($data['email']);
             $user->setPassword($data['password']);
             $user->setCreatedAt($data['createdAt']);
-
+            $user->setQuote($data['quote']);
+            $user->setEmploi($data['emploi']);
+            $user->setProfilePictureLink($data['profilePictureLink']);
             $manager->persist($user);
             $this->addReference(self::USER_REFERENCE_TAG . $i, $user);
         }

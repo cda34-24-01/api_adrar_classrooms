@@ -39,6 +39,15 @@ class User
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Review::class)]
     private Collection $reviews;
 
+    #[ORM\Column(length: 255)]
+    private ?string $quote = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $emploi = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $profile_picture_link = null;
+
     public function __construct()
     {
         $this->reviews = new ArrayCollection();
@@ -146,6 +155,42 @@ class User
                 $review->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getQuote(): ?string
+    {
+        return $this->quote;
+    }
+
+    public function setQuote(string $quote): static
+    {
+        $this->quote = $quote;
+
+        return $this;
+    }
+
+    public function getEmploi(): ?string
+    {
+        return $this->emploi;
+    }
+
+    public function setEmploi(string $emploi): static
+    {
+        $this->emploi = $emploi;
+
+        return $this;
+    }
+
+    public function getProfilePictureLink(): ?string
+    {
+        return $this->profile_picture_link;
+    }
+
+    public function setProfilePictureLink(string $profile_picture_link): static
+    {
+        $this->profile_picture_link = $profile_picture_link;
 
         return $this;
     }
